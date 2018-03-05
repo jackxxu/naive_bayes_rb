@@ -22,15 +22,15 @@ describe NaiveBayesRb::NaiveBayes do
   end
 
   describe 'NaiveBayesRb::NaiveBayes#fit' do
-    let(:data)   {[[1, 20], [2, 21], [3, 22]]}
-    let(:target) {[1, 0, 1]}
-    let(:output) {@nb.fit(data, target)}
+    let(:data)   {[[1, 20], [2, 21], [3, 22], [4, 23]]}
+    let(:target) {[1, 0, 1, 0]}
 
     it 'calculate the model properly' do
       @nb.fit(data, target)
-      expect(output).to eq({0 => [[2, 21]], 1 => [[1, 20], [3, 22]]})
+      expect(@nb.model).to eq({
+        1=>[[2, 1.4142135623730951], [21, 1.4142135623730951]], 
+        0=>[[3, 1.4142135623730951], [22, 1.4142135623730951]]})
     end
-
 
   end
 end

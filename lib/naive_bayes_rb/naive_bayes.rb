@@ -7,7 +7,7 @@ module NaiveBayesRb
       @dimension = data[0].length
       @model = data.zip(target)
                    .group_by(&:last)
-                   .each {|_, v| v.each_index {|i| v[i] = v[i][0]} }
+                   .inject({}) { |h, (k, v)| h[k] = Stats.mean_stdev(v.map(&:first)); h}
     end
 
     def predict(data)
