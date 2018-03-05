@@ -9,6 +9,11 @@ module NaiveBayesRb
       means.zip(stdevs)
     end
 
+    def probability(value, mean, stdev)
+      exponent = Math.exp(-((value-mean)**2)/( 2 * stdev**2 ))
+      (1 / (Math.sqrt(2*Math::PI) * stdev) ) * exponent
+    end
+
     private
 
       def mean(list)
