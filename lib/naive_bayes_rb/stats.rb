@@ -20,8 +20,12 @@ module NaiveBayesRb
           p * probability(value, ms[0], ms[1])}; h}
     end
 
-    def predict(value, summaries)
-      class_probability(value, summaries).sort.first.first
+    def getPrediction(value, summaries)
+      class_probability(value, summaries).sort_by {|_, v| -v}.first.first
+    end
+
+    def getPredictions(values, summaries)
+      values.map {|value| getPrediction(value, summaries)}
     end
 
     private
