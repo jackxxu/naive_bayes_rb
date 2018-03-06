@@ -14,6 +14,12 @@ module NaiveBayesRb
       (1 / (Math.sqrt(2*Math::PI) * stdev) ) * exponent
     end
 
+    def class_probability(value, summaries)
+      summaries.inject({}) { |h, (k, v)| 
+        h[k] = v.inject(1) { |p, ms| 
+          p * probability(value, ms[0], ms[1])}; h}
+    end
+
     private
 
       def mean(list)

@@ -32,5 +32,6 @@ describe NaiveBayesRb::NaiveBayes do
         0=>[[3, 1.4142135623730951], [22, 1.4142135623730951]]})
     end
 
+    
   end
 end

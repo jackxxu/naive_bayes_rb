@@ -32,8 +32,18 @@ describe NaiveBayesRb::Stats do
     it 'calculates correct probability' do
       expect(probability).to eq(0.06248965759370005)
     end
-
   end
+
+  describe '.class_probability' do
+    let(:summaries) { { 0 => [[1, 0.5]], 1 => [[20, 5.0]] } }
+    let(:value) { 1.1 }
+    let(:class_probability) { NaiveBayesRb::Stats.class_probability(value, summaries) }
+
+    it 'calculates correct probability' do
+      expect(class_probability).to eq( { 0 => 0.7820853879509118, 1 => 6.298736258150442e-05 } )
+    end
+  end
+
 end
 
 
