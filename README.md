@@ -53,4 +53,6 @@ Or install it yourself as:
 
 ## Thanks
 
+I followed the tutorials from [this blog]. 
 
+[this blog]: https://machinelearningmastery.com/naive-bayes-classifier-scratch-python/
