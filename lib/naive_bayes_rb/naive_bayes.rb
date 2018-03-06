@@ -1,6 +1,7 @@
 module NaiveBayesRb
   class NaiveBayes
     include SavedModel
+    
     attr_accessor :model
 
     def initialize
