@@ -31,7 +31,20 @@ describe NaiveBayesRb::NaiveBayes do
         1=>[[2, 1.4142135623730951], [21, 1.4142135623730951]], 
         0=>[[3, 1.4142135623730951], [22, 1.4142135623730951]]})
     end
-
-    
   end
+
+
+  describe 'NaiveBayesRb::NaiveBayes#predict' do
+    let(:train)  { [[1, 20], [2, 21], [3, 22], [4, 23]] }
+    let(:target) { [1, 0, 1, 0] }
+    let(:test)   { [[0, 0], [4, 24]] } 
+
+    let(:predictions) {@nb.fit(train, target).predict(test)}
+
+    it 'calculate the model properly' do
+      expect(predictions).to eq([1, 0])
+    end
+  end
+
 end
+

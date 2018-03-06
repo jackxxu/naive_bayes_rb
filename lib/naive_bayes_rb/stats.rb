@@ -16,16 +16,12 @@ module NaiveBayesRb
 
     def class_probability(value, summaries)
       summaries.inject({}) { |h, (k, v)| 
-        h[k] = v.inject(1) { |p, ms| 
-          p * probability(value, ms[0], ms[1])}; h}
+        h[k] = v.zip(Array(value)).inject(1) { |p, ms|
+          p * probability(ms[1], ms[0][0], ms[0][1])}; h}
     end
 
     def prediction(value, summaries)
       class_probability(value, summaries).sort_by {|_, v| -v}.first.first
-    end
-
-    def predictions(values, summaries)
-      values.map {|value| prediction(value, summaries)}
     end
 
     def accuracy(predictions, target)
