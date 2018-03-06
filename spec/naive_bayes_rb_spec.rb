@@ -41,13 +41,19 @@ describe NaiveBayesRb::NaiveBayes do
     let(:train)  { [[1, 20], [2, 21], [3, 22], [4, 23]] }
     let(:target) { [1, 0, 1, 0] }
     let(:test)   { [[0, 0], [4, 24]] } 
-
+    let(:actual_test) {[1, 1]}
     let(:predictions) {@nb.fit(train, target).predict(test)}
+    let(:accuracy) {@nb.accuracy(predictions, actual_test)}
 
-    it 'calculate the model properly' do
+    it 'calculates the model properly' do
       expect(predictions).to eq([1, 0])
     end
+
+    it 'calculates the accurancy' do
+      expect(accuracy).to eq(50)
+    end
   end
+
 
   describe 'NaiveBayesRb::NaiveBayes#save' do
     let(:train)  { [[1, 20], [2, 21], [3, 22], [4, 23]] }
@@ -63,8 +69,7 @@ describe NaiveBayesRb::NaiveBayes do
 
     it 'saves to a model file' do
       expect(loaded_model.model).to eq(@nb.model)
-    end
-    
+    end    
   end
 
 end

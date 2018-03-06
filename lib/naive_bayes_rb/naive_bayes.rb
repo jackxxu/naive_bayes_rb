@@ -22,6 +22,10 @@ module NaiveBayesRb
     def dimension
       (@model.values || []).length
     end
+
+    def accuracy(prediction, actual)
+      Stats.accuracy(prediction, actual)
+    end
     
   end
 end

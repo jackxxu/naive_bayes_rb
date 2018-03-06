@@ -18,7 +18,8 @@ nb = NaiveBayesRb::NaiveBayes.new
 train = [[1, 20], [2, 21], [3, 22], [4, 23]] 
 target = [1, 0, 1, 0] 
 test = [[0, 0], [4, 24]]
-nb.fit(train, target).predict(test) #=> [1, 0] 
+predictions = nb.fit(train, target).predict(test) #=> [1, 0] 
+@nb.accuracy(prediction, [1, 1]) #=> 50
 ```
 ### Model Persistence
 
