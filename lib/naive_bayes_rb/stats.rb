@@ -20,6 +20,10 @@ module NaiveBayesRb
           p * probability(value, ms[0], ms[1])}; h}
     end
 
+    def predict(value, summaries)
+      class_probability(value, summaries).sort.first.first
+    end
+
     private
 
       def mean(list)

@@ -44,6 +44,19 @@ describe NaiveBayesRb::Stats do
     end
   end
 
+  describe '.predict' do
+    let(:summaries) { {'A' => [[1, 0.5]], 'B' => [[20, 5.0]] } }
+    let(:value) { 1.1 }
+    let(:prediction) { NaiveBayesRb::Stats.predict(value, summaries) }
+
+    it 'calculates correct probability' do
+      expect(prediction).to eq( 'A' )
+    end
+    
+  end
 end
+
+
+
 
 
