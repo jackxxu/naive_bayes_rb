@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe NaiveBayesRb::NaiveBayes do
-  before do 
+  before(:all) do 
     @nb = NaiveBayesRb::NaiveBayes.new
   end
 
@@ -37,7 +37,6 @@ describe NaiveBayesRb::NaiveBayes do
     end
   end
 
-
   describe 'NaiveBayesRb::NaiveBayes#predict' do
     let(:train)  { [[1, 20], [2, 21], [3, 22], [4, 23]] }
     let(:target) { [1, 0, 1, 0] }
@@ -49,4 +48,23 @@ describe NaiveBayesRb::NaiveBayes do
       expect(predictions).to eq([1, 0])
     end
   end
+
+  describe 'NaiveBayesRb::NaiveBayes#save' do
+    let(:train)  { [[1, 20], [2, 21], [3, 22], [4, 23]] }
+    let(:target) { [1, 0, 1, 0] }
+    let(:test)   { [[0, 0], [4, 24]] } 
+    let(:model_file_name) { 'test.pb' }
+    let(:loaded_model) { NaiveBayesRb::NaiveBayes.load(model_file_name)  }
+    
+    before do 
+      NaiveBayesRb::NaiveBayes.serializer = NaiveBayesRb::MarshalSerializer
+      @nb.fit(train, target).save(model_file_name)   
+    end
+
+    it 'saves to a model file' do
+      expect(loaded_model.model).to eq(@nb.model)
+    end
+    
+  end
+
 end

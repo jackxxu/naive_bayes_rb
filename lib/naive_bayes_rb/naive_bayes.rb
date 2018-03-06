@@ -1,7 +1,7 @@
 module NaiveBayesRb
   class NaiveBayes
     include SavedModel
-    attr_reader :model
+    attr_accessor :model
 
     def initialize
       @model = {}
@@ -21,6 +21,7 @@ module NaiveBayesRb
     def dimension
       (@model.values || []).length
     end
-
+    
   end
 end
+

@@ -5,13 +5,23 @@ module NaiveBayesRb
     end
     
     module ClassMethods
+      def serializer=(serializer)
+        @serializer = serializer
+      end
+  
+      def serializer
+        @serializer
+      end
+  
       def load(path)
-        # stuff
+        self.new.tap do |nb|
+          nb.model = @serializer.load(path)
+        end
       end
     end
-
-    def save(model, path)
-
+  
+    def save(path)
+      self.class.serializer.save(self.model, path)
     end
   end
 end
