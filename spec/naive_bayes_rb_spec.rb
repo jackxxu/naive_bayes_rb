@@ -9,6 +9,10 @@ describe NaiveBayesRb::NaiveBayes do
     it 'is not nil' do
       expect(@nb).not_to be_nil
     end
+
+    it 'has zero dimension' do
+      expect(@nb.dimension).to eq(0)      
+    end
   end
 
   describe "NaiveBayesRb::NaiveBayes#dimension" do 
@@ -45,6 +49,4 @@ describe NaiveBayesRb::NaiveBayes do
       expect(predictions).to eq([1, 0])
     end
   end
-
 end
-
