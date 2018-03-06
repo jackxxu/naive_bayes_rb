@@ -44,10 +44,10 @@ describe NaiveBayesRb::Stats do
     end
   end
 
-  describe '.getPrediction' do
+  describe '.prediction' do
     let(:summaries) { {'A' => [[1, 0.5]], 'B' => [[20, 5.0]] } }
     let(:value) { 1.1 }
-    let(:prediction) { NaiveBayesRb::Stats.getPrediction(value, summaries) }
+    let(:prediction) { NaiveBayesRb::Stats.prediction(value, summaries) }
 
     it 'calculates correct probability' do
       expect(prediction).to eq( 'A' )
@@ -55,16 +55,25 @@ describe NaiveBayesRb::Stats do
 
   end
 
-  describe '.getPredictions' do
+  describe '.predictions' do
     let(:summaries) { {'A' => [[1, 0.5]], 'B' => [[20, 5.0]] } }
     let(:values) { [ 1.1, 19.1] }
-    let(:prediction) { NaiveBayesRb::Stats.getPredictions(values, summaries) }
+    let(:prediction) { NaiveBayesRb::Stats.predictions(values, summaries) }
 
     it 'calculates correct probability' do
       expect(prediction).to eq( ['A', 'B'] )
     end
   end
 
+  describe '.getAccurancy' do
+    let(:target) { ['a', 'a', 'b'] }
+    let(:predictions) { [ 'a', 'a', 'a'] }
+    let(:accuracy) { NaiveBayesRb::Stats.accuracy(predictions, target) }
+
+    it 'calculates correct probability' do
+      expect(accuracy).to eq( 66.66666666666667 )
+    end
+  end
 end
 
 

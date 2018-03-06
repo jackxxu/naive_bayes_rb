@@ -20,12 +20,20 @@ module NaiveBayesRb
           p * probability(value, ms[0], ms[1])}; h}
     end
 
-    def getPrediction(value, summaries)
+    def prediction(value, summaries)
       class_probability(value, summaries).sort_by {|_, v| -v}.first.first
     end
 
-    def getPredictions(values, summaries)
-      values.map {|value| getPrediction(value, summaries)}
+    def predictions(values, summaries)
+      values.map {|value| prediction(value, summaries)}
+    end
+
+    def accuracy(predictions, target)
+      predictions.zip(target)
+                 .map {|x| x[0] == x[1]}
+                 .count {|x| x}
+                 .send(:*, 100.0)
+                 .send(:/, predictions.length)
     end
 
     private
