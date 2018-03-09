@@ -1,6 +1,8 @@
 # NaiveBayesRb
 
-A very simple Ruby implementation of Naive Bayes classification model. 
+A very simple Ruby implementation of Naive Bayes classification model. Here is the [blog post] for it
+
+[blog post]: https://jackxxu.github.io/machine/learning,/ai,/algorithm,/naive/bayes,/classifier/2018/03/07/naive_bayes_implementation/
 
 ## Design Considerations
 
